@@ -22,7 +22,7 @@ $(document).ready(function () {
 
     function btnDataCall() {
         // console.log($(".city-btn"));
-        var cityName = $(this).attr(".city-button");
+        var cityName = $(this).attr("cityName");
         searchForecast(cityName);
         searchWeather(cityName);
     };
