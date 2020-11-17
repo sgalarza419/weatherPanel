@@ -5,15 +5,27 @@ $(document).ready(function () {
 
     $("#search-button").on("click", function (e) {
         // console.log(e)
-        var cityName = $("#search-value").val();
-
-        renderButton();
+        e.preventDefault();
+        var cityName = $("#search-value").val().trim();
 
         searchForecast(cityName);
         searchWeather(cityName);
 
-        $("#search-value").val("");
-    })
+        cities.push(cityName);
+
+        renderButton();
+
+        $(document).on("click", ".city-btn", btnDataCall);
+        // $("#search-value").val("");
+    });
+
+
+    function btnDataCall() {
+        // console.log($(".city-btn"));
+        var cityName = $(this).attr(".city-button");
+        searchForecast(cityName);
+        searchWeather(cityName);
+    };
 
     function searchWeather(cityName) {
         $.ajax({
@@ -27,9 +39,6 @@ $(document).ready(function () {
                 lat = data.coord.lat;
                 lon = data.coord.lon;
                 searchUv(lat, lon);
-
-
-
             }
         });
     }
@@ -116,22 +125,11 @@ $(document).ready(function () {
         }
     };
 
-    $("#search-button").on("click", function (event) {
-        event.preventDefault();
 
-        var city = $("#search-value").val().trim();
-        cities.push(city);
-
-        renderButton();
-    });
-
-    $(document).on("click", ".city-btn", searchWeather);
 
     // get curretn search history, if there is any
 
     //print out search history
-
-
 
 
 });
