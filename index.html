@@ -15,36 +15,32 @@
 <body>
     <div class="container">
 
-        <header class="container-fluid text-center">
+        <header class="container-fluid text-center" id="weatherDash">
             <h1>Weather Dashboard</h1>
         </header>
 
         <div class="container-fluid">
             <div class="row">
-                <aside class="col-md-3 bg-light">
+                <aside class="col-md-3 bg-light" id="searchDump">
 
                     <h5>Search for a city</h5>
                     <!-- City Buttons Dumped here -->
-                    <div id="city-view">
+
+                    <div class="form-inline form-group">
+                        <input class="form-control" type="text" id="search-value" />
+                        <button class="btn btn-primary" id="search-button"><i class="fa fa-search"></i></button>
                     </div>
 
+                    <div id="city-view"></div>
+
                 </aside>
-                <div class="form-inline form-group">
-                    <input class="form-control" type="text" id="search-value" />
-                    <button class="btn btn-primary" id="search-button"><i class="fa fa-search"></i></button>
-                </div>
+
+                <div class="col-md-9" id="today"></div>
             </div>
         </div>
+        <div class="header"></div>
+        <div class="row" id="weekView"></div>
 
-
-        <div class="row">
-            <div class="col-md-9" id="today"></div>
-        </div>
-
-
-        <div class="row">
-            <div class="col-md-9" id="5day"></div>
-        </div>
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>

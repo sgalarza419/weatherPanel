@@ -16,7 +16,8 @@ $(document).ready(function () {
         renderButton();
 
         $(document).on("click", ".city-btn", btnDataCall);
-        // $("#search-value").val("");
+
+        $("#search-value").val("");
     });
 
 
@@ -57,10 +58,10 @@ $(document).ready(function () {
                 // console.log("weatherData: ", weatherData);
 
                 var title = $("<h3>").addClass("card-title").text(weatherData.name);
-                var card = $("<div>").addClass("card");
-                var wind = $("<p>").addClass("card-text").text("Wind Speed: " + weatherData.wind.speed + " MPH");
+                var card = $("<div>").addClass("daily");
+                var wind = $("<p>").addClass("card-text").text("Wind Speed: " + (weatherData.wind.speed).toFixed(1) + " MPH");
                 var humidity = $("<p>").addClass("card-text").text("Humidity: " + weatherData.main.humidity + "%");
-                var temp = $("<p>").addClass("card-text").text("Temperature: " + weatherData.main.temp + " \u00B0F");
+                var temp = $("<p>").addClass("card-text").text("Temperature: " + (weatherData.main.temp).toFixed(1) + " \u00B0F");
                 // console.log(uvindex);
                 var uv = $("<p>").addClass("card-text").text("UV Index: " + uvindex);
                 var cardBody = $("<div>").addClass("card-body");
@@ -87,24 +88,31 @@ $(document).ready(function () {
             url: "http://api.openweathermap.org/data/2.5/forecast?q=" + cityName + "&appid=92f752c6db223987cf5c4bb3937d6b85&units=imperial",
             dataType: "json",
             success: function (data) {
-                // console.log(data)
+                console.log(data)
                 // use a forloop to loop over all forcast (by specs)
-                $("#5day").empty()
+                $("#weekView").empty();
+                $(".header").empty()
 
                 var fiveDay = $("<h4>").addClass("5DayHeader").text("5-Day Forecast: ")
-                $("#5day").append(fiveDay);
-                for (i = 0; i < 40; i = i + 8) {
+                $(".header").append(fiveDay);
+
+                for (i = 2; i < 40; i = i + 8) {
+
+                    var date = new Date(data.list[i].dt_txt);
+                    console.log("this is first date: ", date)
+                    var date = date.getDate();
+                    console.log("this is  date: ", date)
 
                     // creating a card for appending weather data
-                    var title = $("<h3>").addClass("card-title").text("Date");
-                    var card = $("<div>").addClass("card");
-                    var temp = $("<p>").addClass("card-text").text("Temperature: " + data.list[i].main.temp + " \u00B0F");
+                    var title = $("<h3>").addClass("card-title").text(date);
+                    var card = $("<div>").addClass("weekly");
+                    var temp = $("<p>").addClass("card-text").text("Temperature: " + (data.list[i].main.temp).toFixed(1) + " \u00B0F");
                     var humidity = $("<p>").addClass("card-text").text("Humidity: " + data.list[i].main.humidity + "%");
                     var cardBody = $("<div>").addClass("card-body");
 
                     cardBody.append(title, humidity, temp);
                     card.append(cardBody);
-                    $("#5day").append(card);
+                    $("#weekView").append(card);
                 }
             }
         });
