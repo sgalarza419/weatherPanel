@@ -88,12 +88,25 @@ $(document).ready(function () {
                 var temp = $("<p>").addClass("card-text").text("Temperature: " + (weatherData.main.temp).toFixed(1) + " \u00B0F");
                 var icon = $("<img src=http://openweathermap.org/img/w/" + weatherData.weather[0].icon + ".png>");
                 // console.log(uvindex);
-                var uv = $("<p>").addClass("card-text").text("UV Index: " + uvindex);
+                var uv = $("<p>").addClass("card-text uvIndex").text("UV Index: " + uvindex);
                 var cardBody = $("<div>").addClass("card-body");
 
                 cardBody.append(title, icon, wind, humidity, temp, uv);
                 card.append(cardBody);
                 $("#today").append(card);
+
+                if (uvindex < 2) {
+                    console.log("you have reached inside uvindex if", uvindex);
+                    $(".uvIndex").attr("class", "uvIndex2");
+                } else if (uvindex > 2 && uvindex < 5) {
+                    $(".uvIndex").attr("class", "uvIndex3");
+                } else if (uvindex > 5 && uvindex < 7) {
+                    $(".uvIndex").attr("class", "uvIndex4");
+                } else if (uvindex > 8 && uvindex < 10) {
+                    $(".uvIndex").attr("class", "uvIndex5");
+                } else if (uvindex > 11) {
+                    $(".uvIndex").attr("class", "uvIndex6");
+                }
 
                 // create div to hold cities
                 cityDiv = $("<div class='city'>");
@@ -167,16 +180,10 @@ $(document).ready(function () {
         }
     };
 
-    $("#trash-button").on("click", function () {
-        localStorage.clear();
-        for (k = 0; k < localStorage.length; k++) {
-            cityName = localStorage.key(k);
-            // getBtn = localStorage.getItem(cityName);
+    // $("#trash-button").on("click", function () {
+    //     localStorage.clear();
 
-            cities.push(cityName);
-
-        }
-    });
+    // });
 
 
     // get curretn search history, if there is any
