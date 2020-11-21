@@ -3,6 +3,21 @@ $(document).ready(function () {
     var weatherData;
     var cities = [];
 
+    console.log("this is how long localStorage is: ", localStorage.length);
+
+    for (j = 0; j < localStorage.length; j++) {
+        cityName = localStorage.key(j);
+        // getBtn = localStorage.getItem(cityName);
+        searchForecast(cityName);
+        searchWeather(cityName);
+
+        cities.push(cityName);
+
+        renderButton();
+        $(document).on("click", ".city-btn", btnDataCall);
+    }
+
+
     $("#search-button").on("click", function (e) {
         // console.log(e)
         e.preventDefault();
@@ -14,12 +29,12 @@ $(document).ready(function () {
         cities.push(cityName);
 
         renderButton();
+        localStorage.setItem(cityName, "");
 
         $(document).on("click", ".city-btn", btnDataCall);
 
         $("#search-value").val("");
     });
-
 
     function btnDataCall() {
         // console.log($(".city-btn"));
@@ -41,7 +56,8 @@ $(document).ready(function () {
                 lon = data.coord.lon;
                 searchUv(lat, lon);
                 //Create a history link for the search (Look up .push()) (this is used to set items to local storage)
-                localStorage.push(cityName);
+
+
             }
         });
     }
@@ -63,7 +79,9 @@ $(document).ready(function () {
                 var todaysDate = moment().format('l');
                 // console.log(todaysDate);
 
-                var title = $("<h3>").addClass("card-title").text(weatherData.name);
+                var title = $("<h3>").addClass("card-title").text(weatherData.name + " ");
+                title.append("(" + todaysDate + ")");
+
                 var card = $("<div>").addClass("daily");
                 var wind = $("<p>").addClass("card-text").text("Wind Speed: " + (weatherData.wind.speed).toFixed(1) + " MPH");
                 var humidity = $("<p>").addClass("card-text").text("Humidity: " + weatherData.main.humidity + "%");
@@ -73,7 +91,7 @@ $(document).ready(function () {
                 var uv = $("<p>").addClass("card-text").text("UV Index: " + uvindex);
                 var cardBody = $("<div>").addClass("card-body");
 
-                cardBody.append(title, todaysDate, icon, wind, humidity, temp, uv);
+                cardBody.append(title, icon, wind, humidity, temp, uv);
                 card.append(cardBody);
                 $("#today").append(card);
 
@@ -149,6 +167,16 @@ $(document).ready(function () {
         }
     };
 
+    $("#trash-button").on("click", function () {
+        localStorage.clear();
+        for (k = 0; k < localStorage.length; k++) {
+            cityName = localStorage.key(k);
+            // getBtn = localStorage.getItem(cityName);
+
+            cities.push(cityName);
+
+        }
+    });
 
 
     // get curretn search history, if there is any

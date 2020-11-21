@@ -1,11 +1,26 @@
 .city-btn {
     margin: 10px auto;
-    padding: 12px ;
-    background: #008CBA;
-    color: white;
+    padding: 12px;
+    background: #2bcaff;
+    color: rgb(9, 80, 138);
     font-size: 20px;
     border-radius: 4px;
-    border: 2px solid green;
+    border: 2px solid rgb(203, 255, 203);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    min-width: 250px;
+}
+
+#trash-button {
+    margin: 10px auto;
+    padding: 12px;
+    background: orangered;
+    color: rgb(155, 41, 0);
+    font-size: 20px;
+    /* border-radius: 4px; */
+    /* border: 2px solid rgb(203, 255, 203); */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -18,32 +33,38 @@
 }
 
 #searchDump {
-    float: left
+    float: left;
+    margin-top: 10px;
+    border-radius: 4px;
 }
 
 /* #today, */
 #weekView {
-    color: #222;
+    /* color: #222; */
     /* display: flex; */
     /* flex-direction: row; */
     /* flex-wrap: nowrap; */
-    font-family: 'Helvetica','Arial',sans-serif;
-    margin: 20px auto;
+    font-family: 'Helvetica', 'Arial', sans-serif;
+    margin: 0px;
     width: auto;
 }
 
 #weatherDash {
-    background-color: gray;
-    color: white;
-    padding: 25px
+    background-color: rgb(240, 128, 128);
+    color: rgb(9, 80, 138);
+    padding: 25px;
+    border: solid 2px rgb(9, 80, 138);
+    border-top: none;
 }
 
 .daily {
-    background: #fff;
+    /* background: #fff; */
     border-radius: 3px;
     box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.1);
     padding: 10px;
-    /* text-align: center; */
+    margin-top: 10px;
+    background-color: rgb(246, 234, 210);
+    color:rgb(59, 59, 59);
 }
 
 .weekly {
@@ -52,7 +73,35 @@
     box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.1);
     padding: 10px;
     text-align: center;
-};
+    margin: 2px 2px 0 0;
+    background-color: rgb(246, 234, 210);
+    color:rgb(59, 59, 59);
+
+}
+
+body {
+    background-color: rgba(22, 253, 176, 0.315);
+}
+
+h4 {
+    margin: 10px 0px 10px 0px;
+    font-weight: bolder;
+    color:rgb(59, 59, 59);
+}
+
+h5 {
+    margin: 5px;
+}
+
+h3 {
+    font-weight: bold;
+}
+
+p {
+    text-align: left;
+    line-height: 5px;
+    font-weight: bold;
+}
 
 
 
@@ -61,8 +110,4 @@
 <i class="fas fa-cloud-sun-rain"></i>
 <i class="fas fa-cloud-showers-heavy"></i> */
 
-uv 0-2 green
-uv 3-5 yellow
-uv 6-7 orange
-uv 8-10 red
-uv 11+ violet
+uv 0-2 green uv 3-5 yellow uv 6-7 orange uv 8-10 red uv 11+violet
